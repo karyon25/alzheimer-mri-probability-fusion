@@ -1,0 +1,22 @@
+Dataset root: F:\Dataset_for_Ensemble\archive (5)\AugmentedAlzheimerDataset
+Seed: 42
+Total: 33984
+Fingerprint: 7efad99c096dec1fecee39f260c1984c063c5f17c161e82304824f94c8d62aa7
+
+TRAIN
+  MildDemented: 7168
+  ModerateDemented: 5171
+  NonDemented: 7680
+  VeryMildDemented: 7168
+
+VAL
+  MildDemented: 896
+  ModerateDemented: 646
+  NonDemented: 960
+  VeryMildDemented: 896
+
+TEST
+  MildDemented: 896
+  ModerateDemented: 647
+  NonDemented: 960
+  VeryMildDemented: 896

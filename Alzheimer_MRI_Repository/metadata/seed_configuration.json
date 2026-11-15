@@ -1,0 +1,77 @@
+{
+  "study": "Probability-Level CNN Fusion for Four-Class Alzheimer MRI Classification",
+  "split": {
+    "seed": 42,
+    "algorithm": "Stratified partition, frozen CSV manifests",
+    "fingerprint_sha256": "7efad99c096dec1fecee39f260c1984c063c5f17c161e82304824f94c8d62aa7",
+    "counts": {
+      "total": 33984,
+      "train": 27187,
+      "val": 3398,
+      "internal_benchmark_test": 3399
+    }
+  },
+  "folds": {
+    "n_splits": 5,
+    "splitter": "sklearn.model_selection.StratifiedKFold",
+    "shuffle": true,
+    "random_state": 42,
+    "ordered_classes": [
+      "MildDemented",
+      "ModerateDemented",
+      "NonDemented",
+      "VeryMildDemented"
+    ],
+    "source_rows": "splits/train_seed42.csv in original row order",
+    "ordinary_oof_model_seeds": {
+      "fold_0": 42,
+      "fold_1": 43,
+      "fold_2": 44,
+      "fold_3": 45,
+      "fold_4": 46
+    },
+    "fold_assignment_sha256": "536ab7a38a30da32f01a98207574b4d2b381feb28fcce7221f645a73116953e5"
+  },
+  "pair_exclusion": {
+    "base_seed": 42,
+    "seed_rule": "42 + 1000 + 10*a + b for excluded pair a < b",
+    "pair_fit_seeds": {
+      "exclude_0_1": 1043,
+      "exclude_0_2": 1044,
+      "exclude_0_3": 1045,
+      "exclude_0_4": 1046,
+      "exclude_1_2": 1054,
+      "exclude_1_3": 1055,
+      "exclude_1_4": 1056,
+      "exclude_2_3": 1065,
+      "exclude_2_4": 1066,
+      "exclude_3_4": 1076
+    },
+    "model_architectures": [
+      "efficientnet_b2",
+      "densenet121"
+    ]
+  },
+  "fusion_search": {
+    "objective": "Macro-F1",
+    "global_eff_weight_grid": {
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.005
+    },
+    "classaware_starts": [
+      "all 0.5",
+      "all fitted GlobalOOF weight"
+    ],
+    "classaware_coarse_step": 0.05,
+    "classaware_fine_radius": 0.05,
+    "classaware_fine_step": 0.005,
+    "passes_per_search_phase": 3,
+    "tiebreakers": [
+      "balanced accuracy",
+      "closeness to equal weighting"
+    ]
+  },
+  "environment_note": "PyTorch 2.7.0+cu118; torchvision 0.22.0+cu118; CUDA 11.8 were reported in inference_profile.csv for profiling; versions for all historical training runs were not independently revalidated.",
+  "verification_scope": "Frozen split integrity and OOF fold assignments checked against archived results; original training not rerun during repository assembly."
+}

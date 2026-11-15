@@ -1,0 +1,8 @@
+# Direct imports used in the distributed scripts (not a historical environment lock)
+numpy
+pandas
+Pillow
+scikit-learn
+torch
+torchvision
+fvcore
